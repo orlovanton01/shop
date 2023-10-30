@@ -1,26 +1,7 @@
-<!doctype html>
-<html lang = "ru">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device-width,
-        initial-scale = 1, shrink-to-fit = no">
-        <!-- Bootstrap CSS -->
-        <!-- Здесь добавляем ссылку на собственные стили -->
-        <!--Собственные стили-->
-        <link rel = "stylesheet" href = "css/style.css" >
-        <!--Подключаем bootstrap локально -->
-        <link rel = "stylesheet" href = "css/bootstrap.min.css">
-        <title>Сайт магазина спортивной одежды и обуви</title>
-    </head>
-    <!-- Используем стиль body-top по умолчанию для всего документа-->
-    <body class = "body-top">
-        <!-- Создаем блок для области заголовка -->
-         {{> header}}
-        <script>
-            localStorage.setItem('Данные', '{{d.d}}');
-        </script>
-        <script src="js/catalog.js"></script>        
-        <!-- Конец блока с основным содержимым -->
-    </body>
-</html>
+<!-- Создаем блок для области заголовка -->
+    {{> header}}
+<script>
+    localStorage.setItem('Данные', '{{d.d}}');
+</script>
+<script src="js/catalog.js"></script>        
+<!-- Конец блока с основным содержимым -->
