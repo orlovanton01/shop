@@ -119,21 +119,6 @@ app.get("/contacs", function(req, res){
     res.render("contacs.hbs", {d:d});
 });
 
-//получаем отправленные данные со страницы «Регистрация» registration.hbs и добавляем их в БД
-// app.post("/registration", urlencodedParser, function (req, res) {
-//     if (!req.body) return res.sendStatus(400);
-//     const Name = req.body.name;
-//     const Login = req.body.login;
-//     const Pass = req.body.pass;
-//     pool.query("INSERT INTO users (Name, Login, Pass) VALUES (?,?,?)", [Name, Login, Pass], function (err, data) {
-//             if (err) return console.log(err);
-//             //пока просто перенаправляем на index.hbs
-//             res.redirect("/");
-//             //выводим в консоль в случае успеха
-//             console.log("Добавил в базу");
-//         });
-// });
-
 // РЕГИСТРАЦИЯ В БАЗЕ travel В ТАБЛИЦЕ users
 // ===================================================
 //
