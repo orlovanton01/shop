@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang = "ru">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device-width,
+        initial-scale = 1, shrink-to-fit = no">
+        <!-- Bootstrap CSS -->
+        <!-- Здесь добавляем ссылку на собственные стили -->
+        <!--Собственные стили-->
+        <link rel = "stylesheet" href = "css/style.css" >
+        <!--Подключаем bootstrap локально -->
+        <link rel = "stylesheet" href = "css/bootstrap.min.css">
+        <title>Сайт магазина спортивной одежды и обуви</title>
+        <script>
+            localStorage.setItem('Флаг', false);
+            localStorage.removeItem('k');
+        </script> 
+    </head>
+    <!-- Используем стиль body-top по умолчанию для всего документа-->
+    <body class = "body-top">
+        <!--частичное представление	-->
+		{{> header}}
+        <table class="flex">
+            <tr class="row">
+                <th colspan="4" class="col">
+                    Наши бренды:
+                </th>
+            </tr>
+            <!-- Первая строка таблицы -->
+            <tr class="row">
+                <td class="col">
+                    <a id="Adidas" href="/catalog" onClick="getBrandDetails(this)">
+                        <img src="img/adidas.svg">
+                    </a>
+                </td>
+                <!-- Второй столбец первой строки -->
+                <td class="col">
+                    <a href="/catalog" id="Salomon" onClick="getBrandDetails(this)">
+                        <img src="img/salomon.svg" class="brand">
+                    </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" id="Fila" onClick="getBrandDetails(this)">
+                        <img src="img/fila.svg">
+                    </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" id="Kappa" onClick="getBrandDetails(this)">
+                        <img src="img/kappa.svg">
+                    </a>
+                </td>
+            </tr>
+            <!-- Вторая строка -->
+            <tr class="row">
+                <td class="col">
+                    <a href="/catalog" id="Nike" onClick="getBrandDetails(this)">
+                        <img src="img/nike.svg">
+                    </a>
+                </td>
+                <!-- Второй столбец второй строки -->
+                <td class="col">
+                    <a href="/catalog" id="Puma" onClick="getBrandDetails(this)">
+                        <img src="img/puma.svg">
+                    </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" id="Reebok" onClick="getBrandDetails(this)">
+                        <img src="img/reebok.svg">
+                    </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" id="Icepeak" onClick="getBrandDetails(this)">
+                        <img src="img/icepeak.svg">
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <script src="js/index.js"></script>     
+        <!-- Конец блока с основным содержимым -->
+    </body>
+</html>

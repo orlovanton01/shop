@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang = "ru">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device-width,
+        initial-scale = 1, shrink-to-fit = no">
+        <!-- Bootstrap CSS -->
+        <!-- Здесь добавляем ссылку на собственные стили -->
+        <!--Собственные стили-->
+        <link rel = "stylesheet" href = "css/style.css" >
+        <!--Подключаем bootstrap локально -->
+        <link rel = "stylesheet" href = "css/bootstrap.min.css">
+        <title>Сайт магазина спортивной одежды и обуви</title>
+    </head>
+    <!-- Используем стиль body-top по умолчанию для всего документа-->
+    <body class = "body-top">
+        <!-- Создаем блок для области заголовка -->
+        {{> header}}
+        <!-- Начало таблицы с идентификатором tours -->
+        <table class="flex">
+            <!-- Первая строка таблицы -->
+            <tr class="row">
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Футболка" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/T_shirt.jpg" class="clothes_img">
+                        </div>
+                        <div>Футболки</div>
+                    </a>
+                </td>
+                <!-- Второй столбец первой строки -->
+                <td class="col">
+                    <a href="/catalog" class="clothes_links"  id="Толстовка" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/sweatshirt.jpg" class="clothes_img">
+                        </div>
+                        <div>Толстовки</div>
+                </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Штаны" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/trousers.jpg" class="clothes_img">
+                        </div>
+                        <div>Штаны</div>
+                    </a>
+                </td>
+            </tr>
+            <!-- Вторая строка -->
+            <tr class="row">
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Шорты" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/shirts.jpg" class="clothes_img">
+                        </div>
+                        <div>Шорты</div>
+                    </a>
+                </td>
+                <!-- Второй столбец первой строки -->
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Носки" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/socks.jpg" class="clothes_img">
+                        </div>
+                        <div>Носки</div>
+                    </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Легинсы" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/leggins.jpg" class="clothes_img">
+                        </div>
+                        <div>Легинсы</div>
+                    </a>
+                </td>
+            </tr>
+            <!-- Третья строка -->
+            <tr class="row">
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Куртка" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/jacket.jpg" class="clothes_img">
+                        </div>
+                        <div>Куртки</div>
+                    </a>
+                </td>
+                <!-- Второй столбец первой строки -->
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Ветровка" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/windbreaker.jpg" class="clothes_img">
+                        </div>
+                        <div>Ветровки</div>
+                    </a>
+                </td>
+                <td class="col">
+                    <a href="/catalog" class="clothes_links" id="Перчатки" onClick="getClothesDetails(this)">
+                        <div>
+                            <img src="img/gloves.jpg" class="clothes_img">
+                        </div>
+                        <div>Перчатки</div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <script>
+            function getClothesDetails(obj){
+                localStorage.setItem('Одежда', obj.id);
+            }
+            let type='Одежда';
+            localStorage.setItem('Тип', type);
+        </script>              
+        <!-- Конец блока с основным содержимым -->
+    </body>
+</html>

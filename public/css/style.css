@@ -1,0 +1,125 @@
+.body-top {
+    /*-- Ширина - 80% от всего экрана --*/
+    width: 80%;
+    /*-- Рамка отсутствует --*/
+    border: none;
+    /*-- Выравнивание по центру занимаемой области --*/
+    margin: auto;
+    /* Начертание шрифта */
+    font-family:Verdana;
+    /* Стиль шрифта */
+    font-style:normal;
+    /* Размер шрифта */
+    font-size:normal;
+    /* Жирность шрифта */
+    font-weight:bold;
+    /* Выравнивание текста */
+    text-align:center;
+}
+/* Оформление содержимого всего блока заголовка */
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: #002E5A;
+    vertical-align: center;
+}
+/* Размер логотипа для средних и больших экранов */
+#logo {
+    max-width: 60px;
+    max-height: 60px;
+}
+/* Заголовок в плавающем окне по центру */
+h1{
+    margin: auto;
+}
+.flex, #flex{
+    /*-- Выравнивание по центру --*/
+    margin:auto;
+    width:97%;
+}
+.clothes_img{
+    width: 50%;
+    height: 50%;
+}
+/* МЕДИА-ЗАПРОС позволяет сделать размер логотипа и названия мень-
+шими при изменении размера окна до размера мобильного устройства */
+@media screen and (max-width: 768px)
+{
+    #logo {
+        max-width: 40px;
+        max-height: 40px;
+    }
+    h1 {
+        font-size: 14px;
+    }
+    .flex, #flex{
+        /*-- Выравнивание по центру --*/
+        margin:auto;
+        width:94%;
+    }
+    .clothes_img{
+        width: 60%;
+        height: 60%;
+    }
+}
+#menu {
+    /* Фон всего меню */
+    background-color: #FF8202;
+}
+#menu a {
+    /* Цвет и рамка каждого пункта меню */
+    color:white;
+}
+#menu a:hover {
+    border: 1px solid white;
+}
+#right {
+    line-height: 2;
+}
+#right a {
+    /* Цвет и рамка каждого пункта меню */
+    color:white;
+    text-decoration: none;
+    margin: 2px;
+}
+#right a:hover {
+    border: 1px solid white;
+}
+.flex td, .flex th, #flex td, form #flex th{
+    /*-- Текст выровнен по левому краю --*/
+    text-align: center;
+    padding: 10px;
+}
+.flex td:hover{
+    /*-- Текст выровнен по левому краю --*/
+    border: 2px solid black;
+}
+/* Страница занимает 100% экрана по высоте*/
+html {
+    height: 100%;
+}
+    /* Тело документа имеет относительное позиционирование, но отступ
+    для тела документа снизу больше или равен высоте футера */
+body {
+    min-height:100%;
+    position:relative;
+    padding-bottom: 70px;
+}
+.clothes_links{
+    text-decoration: none;
+    color:#002E5A;
+}
+#link{
+    text-decoration: none;
+    color: black;
+}
+#caption{
+    color: #FF8202;
+}
+#basket_link{
+    text-decoration: none;
+    color: #FF8202;
+}
+#basket_cell:hover{
+    border: 2px solid #FF8202;
+}
