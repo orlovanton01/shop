@@ -1,13 +1,5 @@
-<script>
-    let k=localStorage.getItem('k');
-    if (k==null){
-        localStorage.setItem('Флаг', '{{f}}');
-        k=1;
-        localStorage.setItem('k', k);
-    }
-</script>
 <!-- Создаем блок для области заголовка -->
-    {{> header}}
+{{> header}}
 <table class="flex">
     <tr class="row">
         <th colspan="4" class="col">

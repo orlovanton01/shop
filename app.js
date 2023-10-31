@@ -1,11 +1,21 @@
 const mysql = require("mysql2"); //подключаем БД
 const express = require("express"); //подключаем фреймворк express
-
 const expressHbs = require("express-handlebars");
 const hbs = require("hbs");
 const bcrypt = require("bcryptjs"); //для генерации hash-пароля, длина хэша 60, поэтому в БД  поле Pass надо увеличить мин до 60
+const jwt = require("jsonwebtoken");
+const JwtStrategy = require("passport-jwt").Strategy; // подключаем passpоrt и стратегию
+const ExtractJwt = require("passport-jwt").ExtractJwt; 
+const passport = require("passport");
 
 const app = express(); //создаем объект приложение
+const port = 3000;
+
+const secretKey = "secret";
+
+let opts = {}; // создаем параметры для работы стратегии c 2 парметрами
+opts.jwtFromRequest = ExtractJwt.fromBodyField("jwt");  //берем из реквеста token
+opts.secretOrKey = secretKey;
 
 const urlencodedParser = express.urlencoded({ extended: false });
 //парсер URL – разбирает URL
@@ -22,11 +32,6 @@ const pool = mysql.createPool({
     password: ""            //пароль к нашей базе
 });
 
-//устанавливаем Handlebars в качестве движка представлений в Express
-app.set("view engine", "hbs");
-
-
-
 // устанавливаем настройки для файлов layout
 app.engine("hbs", expressHbs.engine( 
 //expressHbs.engine() осуществляет конфигурацию движка
@@ -38,6 +43,9 @@ defaultLayout: "layout",
  extname: "hbs" //задает расширение файлов
 }
 ))
+
+//устанавливаем Handlebars в качестве движка представлений в Express
+app.set("view engine", "hbs");
 
 // УСТАНОВКА МАРШРУТОВ
 // ===================================================
@@ -106,11 +114,11 @@ app.get("/createfault", function(req, res){
     res.render("createfault.hbs", {d:d});
 });
 // возвращаем браузеру форму для авторизации данных
-app.get("/authoriz", function (req, res) {
+app.get("/avtoriz", function (req, res) {
     let d={
         title: "Авторизация"
     };
-    res.render("authoriz.hbs", {d:d});
+    res.render("avtoriz.hbs", {d:d});
 });
 app.get("/contacs", function(req, res){
     let d={
@@ -165,25 +173,52 @@ app.post("/create", urlencodedParser, function (req, res) {
     }
 });
 
-//получаем отправленные данные со страницы «Авторизация» authorization.hbs и добавляем их в БД
-app.post("/authoriz", urlencodedParser, function (req, res) {
-    if (!req.body) return res.sendStatus(400);
-    const Login = req.body.login;
-    const Pass = req.body.pass;
-    pool.query("select Login, Pass from users where Login=? and Pass=?", [Login, Pass], function (err, data) {
-        if (err) return console.log(err);
-        if (data.length==0){
-            console.log("Неверные логин и пароль, повторите попытку снова");
-            res.redirect("/authoriz");
+// АВТОРИЗАЦИЯ НА САЙТЕ ПО ИМЕЮЩЕЙСЯ ИНФОРМАЦИИ В БАЗЕ В ТАБЛИЦЕ users
+// ===================================================
+//
+
+// получаем отправленные данные из формы
+app.post("/avtoriz", urlencodedParser, function (req, res) {
+    try {
+        if (!req.body) {
+            return res.sendStatus(400);
         }
-        else{
-            console.log("Вы авторизованы");
-            //перенаправляем на index.hbs
-            res.render("index_copy.hbs", {f:true});
-        }
-    });
+        //console.log(`${req.body.login}`);
+        //берем из базы данные по Login  
+        pool.query("SELECT * FROM users WHERE `Login` = '" + req.body.login + "'", (err, result) => {
+            if (err) {
+                res.sendStatus(400);
+                console.log("Ошибка при чтении из бд", err);
+                // проверка наличия в БД, если пустая строка, то нет в БД
+            } else if (result.length <= 0) {
+                console.log(`пользователя ${req.body.login} нет в бд`);
+                res.sendStatus(401);
+            } else {
+                //сравнение hash-пароля из запроса и полученного хэша пароля объекта из базы, спец.функцией
+                const match = bcrypt.compareSync(req.body.pass, result[0].Pass);
+
+                //Если true мы пускаем юзера 
+                if (match) {
+                    //генерируем токен
+                    const token = jwt.sign({
+                        id_user: result[0].ID,
+                        login: result[0].Login
+                    }, secretKey, { expiresIn: 120 * 120 });  //можно "1h" и т.п.
+                    res.status(200).json({ name: result[0].Name, token: `${token}` });
+                    console.log(`Пользователь с таким именем - ${req.body.login} найден в бд, пароль верный,  токен +!`);
+                } else {
+                    //Выкидываем ошибку что пароль не верный
+                    res.status(403).send(`введен не верный пароль`);
+                    console.log(`Пользователь с таким именем - ${req.body.login} есть, но пароль не верный!`);
+                }
+            }
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(400).send('Autorization error');
+    }
 });
 
-app.listen(3000, function () {
-    console.log("Сервер ожидает подключения...");
+app.listen(port, function () {
+    console.log(`Сервер ожидает подключения на ${port} порту...`);
 });

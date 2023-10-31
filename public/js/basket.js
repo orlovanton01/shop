@@ -1,7 +1,6 @@
 let products=JSON.parse(localStorage.getItem('В корзину'));
 
-console.log(products);
-if (products==null) {
+if (products==null||products.length==0) {
     let table=document.createElement('table');
     table.className="flex";
     let row=document.createElement('tr');
