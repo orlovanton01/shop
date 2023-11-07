@@ -12,6 +12,22 @@ for (let i = 0; i < 1000; i++){
     }
 }
 
+let r=localStorage.getItem('Отзывы');
+r=r.split(',');
+remarks=[];
+l=0;
+for (let i = 0; i < r.length/3; i++){
+    remarks[i]=[];
+    for (let j = 0; j < 3; j++){
+        if (l==1+3*i||l==3*i)
+            r[l]=Number(r[l]);
+        remarks[i][j]=r[l];
+        l++;
+    }
+}
+
+console.log(remarks);
+
 let type=localStorage.getItem('Тип');
 
 let products=JSON.parse(localStorage.getItem('В корзину'));
@@ -54,6 +70,7 @@ else {
 }
 
 function printItems(item, k) {
+    let m=localStorage.getItem('Счётчик отзывов');
     for (let i = 0; i < 1000; i++) {
         if (data[i][k]==item) {
             let row1=document.createElement('tr');
@@ -76,7 +93,7 @@ function printItems(item, k) {
             cell2.textContent=data[i][3];
             let a2=document.createElement('a');
             row1.append(a2);
-            a2.href='/remark';
+            a2.href='/remarks';
             let cell4=document.createElement('td');
             a2.append(cell4);
             a2.className='link2 col-3';
@@ -90,47 +107,62 @@ function printItems(item, k) {
                 toBasket.push([data[i][1], data[i][2], data[i][3]]);
                 localStorage.setItem('В корзину', JSON.stringify(toBasket));
             })
-            let row2=document.createElement('tr');
-            table.append(row2);
-            row2.className="row";
-            let cell5=document.createElement('th');
-            row2.append(cell5);
-            cell5.id="caption";
-            cell5.className="col-3";
-            cell5.textContent='id_user';
-            let cell6=document.createElement('th');
-            row2.append(cell6);
-            cell6.className="col-9";
-            cell6.id="caption";
-            cell6.textContent='Текст отзыва';
-            let row3=document.createElement('tr');
-            table.append(row3);
-            row3.className="row";
-            let cell7=document.createElement('th');
-            row3.append(cell7);
-            cell7.id="caption";
-            cell7.className="col-3";
-            cell7.textConten='{{this.id_user}}';
-            let cell8=document.createElement('th');
-            row3.append(cell8);
-            cell8.className="col-9";
-            cell8.id="caption";
-            cell8.textConten='{{this.text}}';
+            if (remarks!=null&&remarks[m][1]==data[i][0]){
+                let row2=document.createElement('tr');
+                table.append(row2);
+                row2.className="row";
+                let cell5=document.createElement('th');
+                row2.append(cell5);
+                cell5.id="caption";
+                cell5.className="col-3";
+                cell5.textContent='id_user';
+                let cell6=document.createElement('th');
+                row2.append(cell6);
+                cell6.className="col-9";
+                cell6.id="caption";
+                cell6.textContent='Текст отзыва';
+                let row3=document.createElement('tr');
+                table.append(row3);
+                row3.className="row";
+                let cell7=document.createElement('th');
+                row3.append(cell7);
+                cell7.id="caption";
+                cell7.className="col-3";
+                cell7.textContent=remarks[m][0];
+                let cell8=document.createElement('th');
+                row3.append(cell8);
+                cell8.className="col-9";
+                cell8.id="caption";
+                cell8.textContent=remarks[m][2];
+            
+                // while (m<remarks.length)
+                //     if (remarks[m][0]==data[i][0])
+                m=0;
+                console.log(m);
+                localStorage.setItem('Счётчик отзывов', m);
+            }
+            else{
+                if (m!=remarks.length-1)
+                    m++;
+                localStorage.setItem('Счётчик отзывов', m);
+            }
         }
     }
     document.body.appendChild(table);
 }
 
 let elems=document.getElementsByClassName("link2");
-for (let i=0; i<elems.length; i++)
-    if (userName !== null) 
+for (let i=0; i<elems.length; i++){
+    if (userName !== null) {
+        elems[i].style.color='black';
         elems[i].style.display="block";
+    }
     else{
         elems[i].textContent='Войдите, чтобы оставить отзыв';
         elems[i].href='/avtoriz';
     }
+}
         
-
 //отлавливание кнопки "выход" с header  => сокрытие блока для добавки отзыва
 document.getElementById("logOut").addEventListener("click", e => {
     e.preventDefault();

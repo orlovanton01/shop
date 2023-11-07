@@ -1,10 +1,10 @@
 <!--частичное представление						-->
 {{> header}}
 
-<div class="row col-md-12 col-sm-12 col-12">
-    <form action="#" id="review-form" style="display: none;">
+<div class="row col-md-12 col-sm-12 col-12" id="remarks" style="display: none">
+    <form action="#" id="review-form" method="post">
         <div class="row">
-            <label for="review-form-tema-inp" class="col-sm-4 col-form-label">Тема: </label>
+            <label for="review-form-tema-inp" class="col-sm-4 col-form-label">ID товара: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="review-form-tema-inp" autofocus="autofocus">
             </div>
@@ -23,5 +23,6 @@
         </div>
     </form>
 </div>
+<div style="display: none" id="err"><a href="avtoriz">Войдите</a>, чтобы оставить отзыв</div>
 
 <script src="js/remarks.js"></script>

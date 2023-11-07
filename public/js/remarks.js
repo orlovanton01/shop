@@ -1,3 +1,16 @@
+//отлавливание кнопки "выход" с header  => сокрытие блока для добавки отзыва
+document.getElementById("logOut").addEventListener("click", e => {
+    e.preventDefault();
+    document.getElementById("remarks").style.display = "none";
+    document.getElementById("err").style.display = "block";
+});
+
+if (userName !== null)
+    document.getElementById("remarks").style.display = "block";
+else
+    document.getElementById("err").style.display = "block";
+
+
 //--------------
 //добавление отзывов в таблицу remarks для авторизованными пользователей
 //--------------

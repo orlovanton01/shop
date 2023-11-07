@@ -62,7 +62,7 @@ else{
             a.href='/basket';
             let cell4=document.createElement('td');
             a.append(cell4);
-            a.id='link';
+            a.id='link1';
             cell4.className="col-3";
             cell1.textContent=products[i][0];
             cell2.textContent=products[i][1];
