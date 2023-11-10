@@ -12,8 +12,6 @@ for (let i = 0; i < 1000; i++){
     }
 }
 
-console.log(data);
-
 let type=localStorage.getItem('Тип');
 
 let products=JSON.parse(localStorage.getItem('В корзину'));
@@ -88,7 +86,7 @@ function printItems(item, k) {
                 cell2.textContent=data[i][1];
             cell4.textContent="В корзину";
             a.addEventListener('click', ()=>{
-                toBasket.push([data[i][1], data[i][2], data[i][3]]);
+                toBasket.push([data[i][0], data[i][1], data[i][2], data[i][3]]);
                 localStorage.setItem('В корзину', JSON.stringify(toBasket));
             })
         }
