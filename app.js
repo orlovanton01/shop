@@ -88,11 +88,11 @@ app.get("/basket", function(req, res){
 });
 
 app.get("/catalog", function(req, res){
-    pool.query("select pr_name, pr_manufacturer, price from products", function(err, data) {
+    pool.query("select * from products", function(err, data) {
         if (err) return console.log(err);
         let result=[];
         for (let i = 0; i < 1000; i++)
-            result[i]=[data[i]['pr_manufacturer'], data[i]['pr_name'], data[i]['price']];
+            result[i]=[data[i]['ps_id'], data[i]['pr_manufacturer'], data[i]['pr_name'], data[i]['price']];
         let d={
             d: result,
             title: "Каталог"

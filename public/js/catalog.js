@@ -4,13 +4,15 @@ data=[];
 k=0;
 for (let i = 0; i < 1000; i++){
     data[i]=[];
-    for (let j = 0; j < 3; j++){
-        if (k==2+3*i)
+    for (let j = 0; j < 4; j++){
+        if (k==3+4*i||k==4*i)
             d[k]=Number(d[k]);
         data[i][j]=d[k];
         k++;
     }
 }
+
+console.log(data);
 
 let type=localStorage.getItem('Тип');
 
@@ -30,24 +32,29 @@ let cell1=document.createElement('th');
 row.append(cell1);
 cell1.id="caption";
 cell1.className="col";
+cell1.textContent="ID товара";
 let cell2=document.createElement('th');
 row.append(cell2);
-cell2.className="col";
 cell2.id="caption";
+cell2.className="col";
 let cell3=document.createElement('th');
 row.append(cell3);
 cell3.className="col";
+cell3.id="caption";
+let cell4=document.createElement('th');
+row.append(cell4);
+cell4.className="col";
 if (type=='Бренды') {
     let brand=localStorage.getItem('Бренд');
-    cell1.textContent="Вид товара";
-    cell2.textContent="Цена (руб.)";
-    printItems(brand, 0);
+    cell2.textContent="Вид товара";
+    cell3.textContent="Цена (руб.)";
+    printItems(brand, 1);
 }
 else {
     let clothes=localStorage.getItem('Одежда');
-    cell1.textContent="Бренд";
-    cell2.textContent="Цена (руб.)";
-    printItems(clothes, 1);
+    cell2.textContent="Бренд";
+    cell3.textContent="Цена (руб.)";
+    printItems(clothes, 2);
 }
 
 function printItems(item, k) {
@@ -58,26 +65,30 @@ function printItems(item, k) {
             row.className="row";
             let cell1=document.createElement('th');
             row.append(cell1);
-            cell1.className="col-4";
+            cell1.className="col-3";
             let cell2=document.createElement('th');
             row.append(cell2);
-            cell2.className="col-4";
+            cell2.className="col-3";
+            let cell3=document.createElement('th');
+            row.append(cell3);
+            cell3.className="col-3";
             let a=document.createElement('a');
             row.append(a);
-            a.className="col-4";
+            a.className="col-3";
             a.href='#';
-            let cell3=document.createElement('td');
-            a.append(cell3);
+            let cell4=document.createElement('td');
+            a.append(cell4);
             a.id='link';
-            cell3.className="col-4";
-            cell2.textContent=data[i][2];
-            if (k==0)
-                cell1.textContent=data[i][1];
+            cell1.textContent=data[i][0]
+            cell4.className="col-3";
+            cell3.textContent=data[i][3];
+            if (k==1)
+                cell2.textContent=data[i][2];
             else
-                cell1.textContent=data[i][0];
-            cell3.textContent="В корзину";
+                cell2.textContent=data[i][1];
+            cell4.textContent="В корзину";
             a.addEventListener('click', ()=>{
-                toBasket.push([data[i][0], data[i][1], data[i][2]]);
+                toBasket.push([data[i][1], data[i][2], data[i][3]]);
                 localStorage.setItem('В корзину', JSON.stringify(toBasket));
             })
         }
