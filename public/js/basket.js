@@ -1,6 +1,6 @@
 let products=JSON.parse(localStorage.getItem('В корзину'));
 
-if (products.length==0) {
+if (products==null||products.length==0) {
     let table=document.createElement('table');
     table.className="flex";
     let row=document.createElement('tr');
@@ -62,7 +62,7 @@ else{
             a.href='/basket';
             let cell4=document.createElement('td');
             a.append(cell4);
-            a.id='link';
+            a.id='link1';
             cell4.className="col-3";
             cell1.textContent=products[i][0];
             cell2.textContent=products[i][1];
