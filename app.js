@@ -17,8 +17,16 @@ let opts = {}; // создаем параметры для работы стра
 opts.jwtFromRequest = ExtractJwt.fromBodyField("jwt");  //берем из реквеста token
 opts.secretOrKey = secretKey;
 
+//создаем стратегию
+passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+    return done(null, jwt_payload.login);
+}));
+
 const urlencodedParser = express.urlencoded({ extended: false });
 //парсер URL – разбирает URL
+
+// создаем парсер для данных в формате json
+const bodyParser = express.json();
 
 // сообщаем Node где лежат ресурсы сайта
 app.use(express.static(__dirname + '/public'));
@@ -217,6 +225,48 @@ app.post("/avtoriz", urlencodedParser, function (req, res) {
         console.log(e);
         res.status(400).send('Autorization error');
     }
+});
+
+//маршрут на страницу с отзывами
+app.get("/remarks-all", (req, res) => {
+    pool.query(`SELECT * FROM remarks`, (err, rows) => {
+        if (err) {
+            console.log(err);
+            return res.sendStatus(500);
+        } else {
+            let d={
+                d: rows,
+                title: "Каталог"
+            };
+            res.status(200).render("remarks-all.hbs", {d:d});
+            console.log(rows)
+            //можно отдавать даные в json
+            //res.status(200).json(data);
+        }
+    });
+});
+
+app.post("/remarks-all", bodyParser, passport.authenticate("jwt", { session: false }), (req, res) => {
+    // console.log(req.body);
+    if (!req.body || !req.body.id_product|| !req.body.text) {
+        return res.sendStatus(400);
+    }
+    pool.query(`SELECT id FROM users WHERE login='${req.user}'`, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+            return res.sendStatus(500);
+        } else {
+            let id = rows[0].id;
+            pool.query(`INSERT INTO remarks (ID_user, ID_product, text) VALUES (${id},'${req.body.id_product}','${req.body.text}')`, (err, rows, fields) => {
+                if (err) {
+                    console.log(err);
+                    return res.sendStatus(500);
+                } else {
+                    return res.sendStatus(200)//.render("remarks-all.hbs");
+                }
+            });
+        }
+    });
 });
 
 app.listen(port, function () {
