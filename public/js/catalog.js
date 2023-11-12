@@ -1,3 +1,6 @@
+var ID=localStorage.getItem('ID');
+console.log(ID);
+
 let d=localStorage.getItem('Данные');
 d=d.replace('"', '').split(',');
 data=[];
@@ -10,6 +13,8 @@ for (let i = 0; i < 1000; i++){
         data[i][j]=d[k];
         k++;
     }
+    if (data[i][0]==ID)
+        localStorage.setItem('Бренд', data[i][1]);
 }
 
 let type=localStorage.getItem('Тип');
@@ -93,3 +98,5 @@ function printItems(item, k) {
     }
     document.body.appendChild(table);
 }
+
+localStorage.setItem('ID', null);

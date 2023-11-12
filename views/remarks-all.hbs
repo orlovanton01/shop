@@ -41,7 +41,7 @@
         {{#each d.d}}
         <tr>
             <td>{{this.ID_user}}</td>
-            <td>{{this.ID_product}}</td>
+            <td><a href='\catalog' onClick="getID(this)" id={{this.ID_product}}>{{this.ID_product}}</a></td>
             <td>{{this.text}}</td>
         </tr>
         {{/each}}

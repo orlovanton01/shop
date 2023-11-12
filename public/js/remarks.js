@@ -1,3 +1,7 @@
+function getID(obj){
+    localStorage.setItem('ID', obj.id);
+}
+
 //видимоcть блока для авторизованных
 if (userName !== null) {
     document.getElementById("review-form").style.display = "block";
