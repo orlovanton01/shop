@@ -19,8 +19,6 @@ document.getElementById("btn-primary").addEventListener("click", e => {
     let avtorizForm = document.forms["review-form"];
     let id_product_inp = avtorizForm.elements["review-form-id_product-inp"].value;
     let text_inp = avtorizForm.elements["review-form-text-inp"].value;
-    console.log(id_product_inp);
-    console.log(text_inp);
     let jwt = localStorage.getItem("token");
     if (!jwt) {
         //маршрут на авторизацию
@@ -50,8 +48,8 @@ document.getElementById("btn-primary").addEventListener("click", e => {
                 //далее if возможно лишние, т.к. авторизация происходит раньше, неавторизованный просто не видит эту форму
             } else if (xhr.status == 403 || xhr.status == 401) {
                 //видимость блока об ошибке 
-            } else {
-                //
+            } else if (xhr.status == 400){
+                $("#wrong-message").show();
             }
         }
     }

@@ -248,7 +248,7 @@ app.get("/remarks-all", (req, res) => {
 
 app.post("/remarks-all", bodyParser, passport.authenticate("jwt", { session: false }), (req, res) => {
     // console.log(req.body);
-    if (!req.body || !req.body.id_product|| !req.body.text) {
+    if (!req.body || !req.body.id_product|| !req.body.text || !(req.body.id_product>=1 && req.body.id_product<=1000)) {
         return res.sendStatus(400);
     }
     pool.query(`SELECT id FROM users WHERE login='${req.user}'`, (err, rows, fields) => {

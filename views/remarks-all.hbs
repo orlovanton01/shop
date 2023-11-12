@@ -6,7 +6,7 @@
         <div class="row">
             <label for="review-form-id_product-inp" class="col-sm-4 col-form-label">ID товара: </label>
             <div class="col-sm-10">
-                <input pattern="[0-9]" type="text" class="form-control" id="review-form-id_product-inp" autofocus="autofocus">
+                <input type="text" class="form-control" id="review-form-id_product-inp" autofocus="autofocus">
             </div>
         </div>
         <div class="row">
@@ -18,8 +18,13 @@
         <div class="row">
             <div class="col-2 contact-form-cell"></div>
             <div class="col-10 reg-button-container contact-form-cell">
-                <button class="btn btn-primary" id="btn-primary" type="submit">Отправить</button>
+                <button class="btn btn-primary" id="btn-primary" type="submit" style="background-color: #002E5A">Отправить</button>
             </div>
+        </div>
+        <div id="wrong-message" style="display: none; text-align: left">
+            <p>
+                <h3>Ввод некорректен</h3>
+            </p>
         </div>
     </form>
 </div>

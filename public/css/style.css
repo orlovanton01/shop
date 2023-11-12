@@ -126,3 +126,7 @@ body {
 #basket_cell:hover{
     border: 2px solid #FF8202;
 }
+.row-cols-5 > * {
+    flex: 0 0 auto;
+    width: 20%;
+  }

@@ -5,7 +5,7 @@ if (products==null||products.length==0) {
     table.className="flex";
     let row=document.createElement('tr');
     table.append(row);
-    row.className="row";
+    row.className="row-cols-5";
     let cell1=document.createElement('th');
     row.append(cell1);
     cell1.id="caption";
@@ -18,7 +18,7 @@ else{
     table.className="flex";
     let row=document.createElement('tr');
     table.append(row);
-    row.className="row";
+    row.className="row-cols-5";
     let cell1=document.createElement('th');
     row.append(cell1);
     cell1.id="caption";
@@ -50,7 +50,7 @@ else{
         for (let i = 0; i < products.length; i++) {
             let row=document.createElement('tr');
             table.append(row);
-            row.className="row";
+            row.className="row-cols-5";
             let cell1=document.createElement('th');
             row.append(cell1);
             cell1.className="col";
@@ -85,7 +85,7 @@ else{
         }
         let row=document.createElement('tr');
         table.append(row);
-        row.className="row";
+        row.className="row-cols-5";
         let cell1=document.createElement('th');
         row.append(cell1);
         cell1.id="caption";
