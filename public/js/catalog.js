@@ -1,5 +1,4 @@
 var ID=localStorage.getItem('ID');
-console.log(ID);
 
 let d=localStorage.getItem('Данные');
 d=d.replace('"', '').split(',');
