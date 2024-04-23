@@ -1,66 +1,47 @@
-<!doctype html>
-<html lang = "ru">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device-width,
-        initial-scale = 1, shrink-to-fit = no">
-        <!-- Bootstrap CSS -->
-        <!-- Здесь добавляем ссылку на собственные стили -->
-        <!--Собственные стили-->
-        <link rel = "stylesheet" href = "css/style.css" >
-        <!--Подключаем bootstrap локально -->
-        <link rel = "stylesheet" href = "css/bootstrap.min.css">
-        <title>Сайт магазина спортивной одежды и обуви</title>
-    </head>
-    <!-- Используем стиль body-top по умолчанию для всего документа-->
-    <body class = "body-top">
-        <!-- Создаем блок для области заголовка -->
-         {{> header}}
-        <form method = "get" action = "#">
-            <!-- Начало таблицы -->
-            <table id="flex">
-                <tr class="row">
-                    <th colspan="2" class="col">
-                        Наш адрес: г. Пермь, ​шоссе Космонавтов, 162б.
-                    </th>
-                </tr>
-                <tr class="row">
-                    <th colspan="2" class="col">
-                        Для связи с нами заполните форму:
-                    </th>
-                </tr>
-                <tr class="row">
-                    <td class="col">Введите свое имя</td>
-                    <!-- Простое текстовое поле для ввода имени -->
-                    <td class="col"><input name = "name"></td>
-                </tr>
-                <tr class="row">
-                    <td class="col">Введите ваш номер телефона</td>
-                    <!-- Простое текстовое поле для ввода телефона -->
-                    <td class="col"><input name = "tel"></td>
-                </tr> 
-                <tr class="row">
-                    <td class="col">Введите ваш электронный aдpec</td>
-                    <!-- Простое текстовое поле для ввода адреса электронной почты
-                    -->
-                    <td class="col"><input name = "mail"></td>
-                </tr>
-                <tr class="row">
-                    <td class="col">Введите Ваше сообщение</td>
-                    <td class="col">
-                    <!-- Поле для ввода многострочного сообщения -->
-                        <textarea name = "text" rows = "3">
-                        </textarea>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td colspan = 2 class="col">
-                        <!-- Кнопка для отправки формы на обработку -->
-                        <input name = "otp" type = "submit" value = "Отправить">
-                    </td>
-                </tr>
-            </table>         
-        <!-- Конец блока с основным содержимым -->
-    </body>
-</html>
+<!-- Создаем блок для области заголовка -->
+{{> header}}
+<form method = "get" action = "#">
+    <!-- Начало таблицы -->
+    <table id="flex">
+        <tr class="row">
+            <th colspan="2" class="col">
+                Наш адрес: г. Пермь, ​шоссе Космонавтов, 162б.
+            </th>
+        </tr>
+        <tr class="row">
+            <th colspan="2" class="col">
+                Для связи с нами заполните форму:
+            </th>
+        </tr>
+        <tr class="row">
+            <td class="col">Введите свое имя</td>
+            <!-- Простое текстовое поле для ввода имени -->
+            <td class="col"><input name = "name"></td>
+        </tr>
+        <tr class="row">
+            <td class="col">Введите ваш номер телефона</td>
+            <!-- Простое текстовое поле для ввода телефона -->
+            <td class="col"><input name = "tel"></td>
+        </tr> 
+        <tr class="row">
+            <td class="col">Введите ваш электронный aдpec</td>
+            <!-- Простое текстовое поле для ввода адреса электронной почты
+            -->
+            <td class="col"><input name = "mail"></td>
+        </tr>
+        <tr class="row">
+            <td class="col">Введите Ваше сообщение</td>
+            <td class="col">
+            <!-- Поле для ввода многострочного сообщения -->
+                <textarea name = "text" rows = "3">
+                </textarea>
+            </td>
+        </tr>
+        <tr class="row">
+            <td colspan = 2 class="col">
+                <!-- Кнопка для отправки формы на обработку -->
+                <input name = "otp" type = "submit" value = "Отправить">
+            </td>
+        </tr>
+    </table>         
+<!-- Конец блока с основным содержимым -->

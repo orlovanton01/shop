@@ -5,3 +5,5 @@ function getBrandDetails(obj){
 let type='Бренды';
 
 localStorage.setItem('Тип', type);
+
+localStorage.setItem('ID', null);

@@ -61,6 +61,9 @@ h1{
         width: 60%;
         height: 60%;
     }
+    #right a{
+        font-size: 11px;
+    }
 }
 #menu {
     /* Фон всего меню */
@@ -122,4 +125,8 @@ body {
 }
 #basket_cell:hover{
     border: 2px solid #FF8202;
+}
+.row-cols-5 > * {
+    flex: 0 0 auto;
+    width: 20%;
 }
